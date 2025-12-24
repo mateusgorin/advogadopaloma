@@ -5,7 +5,7 @@ import Hero from './components/Hero';
 import About from './components/About';
 import PracticeAreas from './components/PracticeAreas';
 import Contact from './components/Contact';
-import AIChat from './components/AIChat';
+import WhatsAppButton from './components/WhatsAppButton';
 import Footer from './components/Footer';
 import DisclaimerPopup from './components/DisclaimerPopup';
 
@@ -69,8 +69,8 @@ const App: React.FC = () => {
 
       <Footer />
       
-      {/* Floating AI Assistant */}
-      <AIChat />
+      {/* Floating WhatsApp Button */}
+      <WhatsAppButton />
 
       {/* Tailwind animation extensions */}
       <style>{`
