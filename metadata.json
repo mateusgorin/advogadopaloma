@@ -1,8 +1,5 @@
-
 {
   "name": "Advogado Paloma - Advocacia de Elite",
-  "description": "Um website luxuoso e moderno para o escritório de advocacia Advogado Paloma, apresentando design sofisticado, animações fluidas e um assistente jurídico inteligente alimentado por IA.",
-  "requestFramePermissions": [
-    "microphone"
-  ]
+  "description": "Um website luxuoso e moderno para o escritório de advocacia Advogado Paloma, apresentando design sofisticado, animações fluidas e atendimento direto.",
+  "requestFramePermissions": []
 }

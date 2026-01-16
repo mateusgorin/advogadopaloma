@@ -1,14 +1,10 @@
 
 import { GoogleGenAI } from "@google/genai";
 
-const API_KEY = process.env.API_KEY;
-
+// Always initialize GoogleGenAI with the API key from process.env.API_KEY
 export const generateLegalAdvice = async (userPrompt: string) => {
-  if (!API_KEY) {
-    throw new Error("API Key not found");
-  }
-
-  const ai = new GoogleGenAI({ apiKey: API_KEY });
+  // Create a new instance right before making the API call to ensure the latest config is used
+  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
   
   const response = await ai.models.generateContent({
     model: "gemini-3-flash-preview",
@@ -20,5 +16,6 @@ export const generateLegalAdvice = async (userPrompt: string) => {
     },
   });
 
+  // Accessing text property directly as per latest @google/genai SDK guidelines
   return response.text;
 };

@@ -6,7 +6,6 @@ const DisclaimerPopup: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Pequeno delay para garantir que a animação de entrada funcione suavemente
     const timer = setTimeout(() => {
       setIsVisible(true);
     }, 500);
@@ -21,15 +20,12 @@ const DisclaimerPopup: React.FC = () => {
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center px-4">
-      {/* Overlay Backdrop */}
       <div 
-        className="absolute inset-0 bg-black/95 backdrop-blur-sm transition-opacity duration-500"
+        className="absolute inset-0 bg-black/60 backdrop-blur-md transition-opacity duration-500"
         onClick={handleClose}
       ></div>
 
-      {/* Modal Content */}
-      <div className="relative bg-[#111] border border-[#d4af37] p-8 md:p-10 max-w-lg w-full shadow-[0_0_50px_rgba(212,175,55,0.2)] animate-fade-in-up rounded-sm">
-        
+      <div className="relative bg-[#0f0f0f] border border-[#d4af37]/20 p-8 md:p-10 max-w-lg w-full shadow-[0_0_50px_rgba(0,0,0,0.8)] animate-fade-in-up rounded-sm">
         <button 
           onClick={handleClose}
           className="absolute top-4 right-4 text-gray-500 hover:text-[#d4af37] transition-colors"
@@ -48,12 +44,12 @@ const DisclaimerPopup: React.FC = () => {
 
           <div className="h-[1px] w-16 bg-[#d4af37] mb-6"></div>
 
-          <p className="font-sans text-gray-300 mb-4 leading-relaxed font-light">
-            Este site está atualmente em fase de <strong className="text-[#d4af37]">construção e desenvolvimento</strong>.
+          <p className="font-sans text-gray-400 mb-4 leading-relaxed font-light">
+            Este site está atualmente em fase de <strong className="text-[#d4af37]">construção</strong> pelo escritório Advogado Paloma.
           </p>
 
-          <p className="font-sans text-gray-400 text-sm mb-8 leading-relaxed">
-            Todas as informações, nomes, casos jurídicos e dados de contato apresentados aqui são meramente <strong className="text-white">fictícios e ilustrativos</strong>, servindo apenas para demonstração de layout e funcionalidades.
+          <p className="font-sans text-gray-500 text-sm mb-8 leading-relaxed">
+            Todas as informações aqui apresentadas são <strong className="text-white">fictícias e ilustrativas</strong> para demonstração de design.
           </p>
 
           <button 

@@ -3,6 +3,7 @@ export interface PracticeArea {
   id: string;
   title: string;
   description: string;
+  longDescription: string;
   icon: string;
 }
 
