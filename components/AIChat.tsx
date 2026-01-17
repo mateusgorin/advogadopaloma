@@ -7,7 +7,7 @@ import { Message } from '../types';
 const AIChat: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'assistant', content: 'Saudações. Sou o assistente virtual do escritório Advogado Paloma. Como posso auxiliá-lo em sua jornada jurídica hoje?' }
+    { role: 'assistant', content: 'Saudações. Sou o assistente virtual do escritório Advogado Paloma. Como posso auxiliá-lo?' }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -39,33 +39,28 @@ const AIChat: React.FC = () => {
 
   return (
     <>
-      {/* Trigger Button */}
+      {/* Trigger Button - Adjusted for Mobile to stack with WhatsApp */}
       <button 
         onClick={() => setIsOpen(true)}
-        className={`fixed bottom-8 right-8 z-50 p-4 gold-bg rounded-full shadow-2xl hover:scale-110 transition-all duration-300 group ${isOpen ? 'scale-0' : 'scale-100'}`}
+        className={`fixed bottom-[88px] right-6 md:bottom-28 md:right-8 z-50 p-3.5 md:p-4 gold-bg rounded-full shadow-2xl hover:scale-110 transition-all duration-300 group ${isOpen ? 'scale-0' : 'scale-100'}`}
       >
-        <MessageSquare className="text-black" size={28} />
-        <span className="absolute -top-12 right-0 bg-black/80 text-white text-[10px] py-1 px-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap uppercase tracking-widest border border-gold">Assistente Jurídico</span>
+        <MessageSquare className="text-black" size={24} md:size={28} />
+        <span className="absolute -top-12 right-0 bg-black/80 text-white text-[10px] py-1 px-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap uppercase tracking-widest border border-gold hidden md:block">Assistente Jurídico</span>
       </button>
 
       {/* Chat Window */}
-      <div className={`fixed bottom-8 right-8 z-50 w-full max-w-[400px] h-[600px] bg-[#0f0f0f] border border-[#d4af37]/30 shadow-2xl rounded-lg flex flex-col transition-all duration-500 transform ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0 pointer-events-none'}`}>
+      <div className={`fixed bottom-0 right-0 md:bottom-8 md:right-8 z-[100] w-full md:max-w-[400px] h-full md:h-[600px] bg-[#0f0f0f] border-t md:border border-[#d4af37]/30 shadow-2xl md:rounded-lg flex flex-col transition-all duration-500 transform ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-full md:translate-y-20 opacity-0 pointer-events-none'}`}>
         {/* Header */}
-        <div className="p-4 gold-bg flex justify-between items-center rounded-t-lg">
+        <div className="p-4 gold-bg flex justify-between items-center md:rounded-t-lg">
           <div className="flex items-center gap-3">
-            <div className="bg-black/20 p-2 rounded-full">
-              <Bot size={20} className="text-black" />
-            </div>
+            <Bot size={20} className="text-black" />
             <div>
               <p className="text-black font-bold font-serif text-sm">Assistente Advogado Paloma</p>
-              <div className="flex items-center gap-1">
-                <div className="w-1.5 h-1.5 bg-green-900 rounded-full animate-pulse"></div>
-                <span className="text-[10px] text-black/70 font-bold uppercase tracking-tighter">Online agora</span>
-              </div>
+              <span className="text-[10px] text-black/70 font-bold uppercase tracking-tighter">Online</span>
             </div>
           </div>
-          <button onClick={() => setIsOpen(false)} className="text-black hover:scale-110 transition-transform">
-            <X size={24} />
+          <button onClick={() => setIsOpen(false)} className="text-black hover:scale-110 p-2">
+            <X size={28} />
           </button>
         </div>
 
@@ -73,14 +68,14 @@ const AIChat: React.FC = () => {
         <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 space-y-4 bg-gradient-to-b from-[#151515] via-[#0a0a0a] to-black">
           {messages.map((msg, i) => (
             <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-              <div className={`max-w-[80%] p-3 rounded-lg text-sm leading-relaxed ${msg.role === 'user' ? 'bg-[#d4af37] text-black font-medium shadow-[0_0_10px_rgba(212,175,55,0.2)]' : 'bg-[#1a1a1a] border border-white/5 text-gray-200 shadow-md'}`}>
+              <div className={`max-w-[85%] p-3 rounded-lg text-sm leading-relaxed ${msg.role === 'user' ? 'bg-[#d4af37] text-black font-medium' : 'bg-[#1a1a1a] border border-white/5 text-gray-200'}`}>
                 <p className="whitespace-pre-wrap">{msg.content}</p>
               </div>
             </div>
           ))}
           {isLoading && (
             <div className="flex justify-start">
-              <div className="bg-[#1a1a1a] border border-white/5 p-3 rounded-lg flex gap-1">
+              <div className="bg-[#1a1a1a] p-3 rounded-lg flex gap-1">
                 <div className="w-1.5 h-1.5 bg-gold rounded-full animate-bounce"></div>
                 <div className="w-1.5 h-1.5 bg-gold rounded-full animate-bounce [animation-delay:0.2s]"></div>
                 <div className="w-1.5 h-1.5 bg-gold rounded-full animate-bounce [animation-delay:0.4s]"></div>
@@ -90,25 +85,23 @@ const AIChat: React.FC = () => {
         </div>
 
         {/* Input */}
-        <div className="p-4 bg-black/90 border-t border-white/10 backdrop-blur-sm">
+        <div className="p-4 bg-black/90 border-t border-white/10 pb-8 md:pb-4">
           <div className="flex gap-2">
             <input 
               type="text" 
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-              placeholder="Digite sua dúvida jurídica..."
-              className="flex-1 bg-white/5 border border-white/10 rounded px-4 py-2 text-sm focus:outline-none focus:border-[#d4af37] transition-colors text-white placeholder-gray-500"
+              placeholder="Digite sua dúvida..."
+              className="flex-1 bg-white/5 border border-white/10 rounded-sm px-4 py-3 text-sm focus:outline-none focus:border-[#d4af37] text-white"
             />
             <button 
               onClick={handleSend}
-              disabled={isLoading || !input.trim()}
-              className="p-2 gold-bg rounded text-black hover:brightness-110 disabled:opacity-50 transition-all"
+              className="px-4 gold-bg rounded-sm text-black"
             >
-              <Send size={20} />
+              <Send size={18} />
             </button>
           </div>
-          <p className="text-[10px] text-gray-500 mt-2 text-center uppercase tracking-widest">IA treinada em consultoria jurídica</p>
         </div>
       </div>
     </>
